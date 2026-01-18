@@ -186,7 +186,7 @@ export default function Contact() {
                   </div>
                   <div className="flex items-center gap-3 text-cream/80 mt-2">
                     <Phone size={18} className="text-moss" />
-                    <span>+1(619) 751-3333</span>
+                    <span>+1 (619) 751-3333</span>
                   </div>
                 </div>
 
@@ -210,7 +210,7 @@ export default function Contact() {
               {/* Location */}
               <div className="mt-10 pt-8 border-t border-moss/30">
                 <p className="text-gray-moss text-sm">
-                  Based in Charleston, South Carolina<br />
+                  Based in Oskarshamn, Sweden<br />
                   Available for touring nationwide
                 </p>
               </div>
