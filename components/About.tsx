@@ -76,8 +76,8 @@ export default function About() {
               {/* Main image */}
               <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-2xl relative">
                 <Image
-                  src="/images/angel-oak.jpg"
-                  alt="The Angel Oak Tree - a 400-500 year old Southern live oak"
+                  src="/images/band-placeholder.svg"
+                  alt="Angel Oak Orchestra performing under the ancient oak"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
