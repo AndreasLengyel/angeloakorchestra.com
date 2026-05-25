@@ -1,8 +1,26 @@
 'use client';
 
-import { useState } from 'react';
-import { ArrowUp, Instagram, Facebook, Youtube, Music } from 'lucide-react';
+import { useState, type ComponentType, type SVGProps } from 'react';
+import { ArrowUp, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
+
+// X (formerly Twitter) — lucide doesn't ship the rebranded glyph yet
+function XIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+// SoundCloud — simplified waveform mark
+function SoundCloudIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M1.5 14.5v-2a.5.5 0 011 0v2a.5.5 0 01-1 0zm2 1.5v-5a.5.5 0 011 0v5a.5.5 0 01-1 0zm2 1V9a.5.5 0 011 0v8a.5.5 0 01-1 0zm2 .5V7a.5.5 0 011 0v10.5a.5.5 0 01-1 0zM10 18V6.5a.5.5 0 011 0V18a.5.5 0 01-1 0zm2.5.5V8a4.5 4.5 0 018.972-.514A3.5 3.5 0 0120.5 18.5h-7.5a.5.5 0 01-.5-.5z" />
+    </svg>
+  );
+}
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -13,11 +31,17 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
-const socialLinks = [
-  { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: Facebook, label: 'Facebook', href: '#' },
-  { icon: Youtube, label: 'YouTube', href: '#' },
-  { icon: Music, label: 'Spotify', href: '#' },
+type SocialLink = {
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  label: string;
+  href: string;
+};
+
+const socialLinks: SocialLink[] = [
+  { icon: Instagram,      label: 'Instagram',  href: 'https://www.instagram.com/theangeloakorchestra' },
+  { icon: Youtube,        label: 'YouTube',    href: 'https://www.youtube.com/@AngelOakOrchestra' },
+  { icon: SoundCloudIcon, label: 'SoundCloud', href: 'https://soundcloud.com/angel-oak-orchestra' },
+  { icon: XIcon,          label: 'X',          href: 'https://x.com/oak_angel16177' },
 ];
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
@@ -197,10 +221,12 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  aria-label={social.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Angel Oak Orchestra on ${social.label}`}
                   className="w-10 h-10 rounded-full border border-moss/30 flex items-center justify-center text-gray-moss hover:text-amber hover:border-amber transition-colors"
                 >
-                  <social.icon size={18} />
+                  <social.icon width={18} height={18} />
                 </a>
               ))}
             </div>
