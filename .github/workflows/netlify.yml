@@ -24,12 +24,18 @@ jobs:
         run: npm ci
 
       - name: Deploy to Netlify
-        run: |
-          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            npx netlify-cli@latest deploy --build --prod --message "Deploy from GitHub Actions - ${{ github.event.head_commit.message }}"
-          else
-            npx netlify-cli@latest deploy --build --message "Preview deploy - PR #${{ github.event.pull_request.number }}"
-          fi
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          EVENT_NAME: ${{ github.event_name }}
+          GIT_REF: ${{ github.ref }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # Only take the first line of the commit message to keep the deploy message short
+          COMMIT_FIRST_LINE="$(printf '%s' "$COMMIT_MESSAGE" | head -n 1)"
+          if [ "$EVENT_NAME" = "push" ] && [ "$GIT_REF" = "refs/heads/main" ]; then
+            npx netlify-cli@latest deploy --build --prod --message "GitHub Actions: $COMMIT_FIRST_LINE"
+          else
+            npx netlify-cli@latest deploy --build --message "Preview deploy - PR #$PR_NUMBER"
+          fi
