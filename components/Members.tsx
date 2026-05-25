@@ -1,32 +1,22 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { MemberKey } from './MemberPortrait';
 
-const members = [
-  {
-    name: 'Andreas Petersson',
-    role: 'Vocals, Lead Guitar',
-  },
-  {
-    name: 'Fideli Jonsson',
-    role: 'Vocals, Lead',
-  },
-  {
-    name: 'Magnus Petersson',
-    role: 'Vocals, Keys, Hammond, Piano, Acoustic Guitar',
-  },
-  {
-    name: 'Andreas Lengyel',
-    role: 'Vocals, Lead, Keys, Acoustic Guitar',
-  },
-  {
-    name: 'Vlado Markovic',
-    role: 'Bass',
-  },
-  {
-    name: 'Robin Åverling',
-    role: 'Vocals, Drums',
-  },
+type Member = {
+  key: MemberKey;
+  name: string;
+  role: string;
+};
+
+const members: Member[] = [
+  { key: 'andreas-petersson', name: 'Andreas Petersson', role: 'Vocals, Lead Guitar' },
+  { key: 'fideli-jonsson',    name: 'Fideli Jonsson',    role: 'Vocals, Lead' },
+  { key: 'magnus-petersson',  name: 'Magnus Petersson',  role: 'Vocals, Keys, Hammond, Piano, Acoustic Guitar' },
+  { key: 'andreas-lengyel',   name: 'Andreas Lengyel',   role: 'Vocals, Lead, Keys, Acoustic Guitar' },
+  { key: 'vlado-markovic',    name: 'Vlado Markovic',    role: 'Bass' },
+  { key: 'robin-averling',    name: 'Robin Åverling',    role: 'Vocals, Drums' },
 ];
 
 export default function Members() {
@@ -77,21 +67,38 @@ export default function Members() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {members.map((member, index) => (
             <div
-              key={member.name}
+              key={member.key}
               className={`fade-in stagger-${(index % 3) + 1} member-card group`}
             >
-              {/* Photo Placeholder */}
-              <div className="aspect-[3/4] bg-gradient-to-br from-forest to-moss rounded-lg overflow-hidden mb-4 shadow-lg group-hover:shadow-xl transition-shadow">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center text-cream/40 p-6">
-                    <div className="w-16 h-16 mx-auto mb-3 rounded-full border border-cream/20 flex items-center justify-center">
-                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                    </div>
-                    <p className="text-xs uppercase tracking-wider">Photo</p>
-                  </div>
-                </div>
+              {/* Comic-book framed portrait */}
+              <div className="portrait-frame relative aspect-[3/4] rounded-lg overflow-hidden mb-4 shadow-lg group-hover:shadow-2xl">
+                <Image
+                  src={`/images/members/${member.key}.jpg`}
+                  alt={member.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover portrait-img"
+                />
+                {/* Halftone dot overlay — comic-book texture */}
+                <div className="portrait-halftone" aria-hidden="true" />
+                {/* Color wash that ties into site palette */}
+                <div
+                  className="absolute inset-0 mix-blend-multiply pointer-events-none"
+                  style={{
+                    background:
+                      'linear-gradient(180deg, rgba(212,165,116,0.0) 30%, rgba(45,74,45,0.55) 100%)',
+                  }}
+                  aria-hidden="true"
+                />
+                {/* Bold comic-panel border */}
+                <div
+                  className="absolute inset-0 pointer-events-none rounded-lg"
+                  style={{
+                    boxShadow:
+                      'inset 0 0 0 3px var(--forest-deep), inset 0 0 0 6px rgba(212,165,116,0.4)',
+                  }}
+                  aria-hidden="true"
+                />
               </div>
 
               {/* Member Info */}

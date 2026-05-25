@@ -164,6 +164,85 @@ body {
   padding-top: 1rem;
 }
 
+/* ============================================================
+   Comic-book member portraits
+   - Halftone dot overlay (Ben-Day pattern)
+   - Bold panel border
+   - Gentle hover punch
+   ============================================================ */
+.portrait-frame {
+  background: var(--forest-deep);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.portrait-img {
+  transition: transform 0.7s ease, filter 0.5s ease;
+  filter: contrast(1.05) saturate(1.05);
+}
+
+/* Halftone dot pattern using radial-gradient */
+.portrait-halftone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      circle at center,
+      rgba(26, 46, 26, 0.32) 0,
+      rgba(26, 46, 26, 0.32) 1px,
+      transparent 1.5px,
+      transparent 100%
+    );
+  background-size: 5px 5px;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  transition: opacity 0.5s ease, background-size 0.5s ease;
+}
+
+.member-card:hover .portrait-img {
+  transform: scale(1.04);
+  filter: contrast(1.12) saturate(1.18);
+}
+
+.member-card:hover .portrait-frame {
+  transform: translateY(-6px) rotate(-0.4deg);
+}
+
+.member-card:hover .portrait-halftone {
+  opacity: 0.4;
+  background-size: 6px 6px;
+}
+
+/* Stagger the rotation on hover so each card feels alive individually */
+.member-card:nth-child(even):hover .portrait-frame {
+  transform: translateY(-6px) rotate(0.4deg);
+}
+
+/* Subtle ambient float so the grid doesn't feel static */
+@keyframes portrait-breathe {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+.portrait-frame {
+  animation: portrait-breathe 7s ease-in-out infinite;
+}
+.member-card:nth-child(2) .portrait-frame { animation-delay: -1.5s; }
+.member-card:nth-child(3) .portrait-frame { animation-delay: -3s; }
+.member-card:nth-child(4) .portrait-frame { animation-delay: -4.5s; }
+.member-card:nth-child(5) .portrait-frame { animation-delay: -2.2s; }
+.member-card:nth-child(6) .portrait-frame { animation-delay: -5.8s; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .portrait-frame,
+  .portrait-img,
+  .portrait-halftone {
+    animation: none;
+    transition: none;
+  }
+}
+
 /* Form input focus styles */
 input:focus,
 textarea:focus,
