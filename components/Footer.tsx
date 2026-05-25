@@ -20,14 +20,49 @@ const socialLinks = [
   { icon: Music, label: 'Spotify', href: '#' },
 ];
 
+type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
+
+const encode = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+
 export default function Footer() {
   const [email, setEmail] = useState('');
+  const [botField, setBotField] = useState('');
+  const [status, setStatus] = useState<SubmitStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', email);
-    alert('Thank you for subscribing! (This is a demo - form is not connected)');
-    setEmail('');
+    if (status === 'submitting') return;
+
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'newsletter',
+          email,
+          'bot-field': botField,
+          source: 'footer',
+          subscribed_at: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Submission failed (${response.status})`);
+      }
+
+      setStatus('success');
+      setEmail('');
+    } catch (err) {
+      setStatus('error');
+      setErrorMessage(err instanceof Error ? err.message : 'Something went wrong.');
+    }
   };
 
   const scrollToTop = () => {
@@ -65,22 +100,60 @@ export default function Footer() {
           <p className="text-gray-moss mb-6 max-w-md mx-auto">
             Subscribe to our newsletter for tour updates, new releases, and stories from the road.
           </p>
-          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form
+            name="newsletter"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={handleNewsletterSubmit}
+            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+          >
+            {/* Netlify form metadata */}
+            <input type="hidden" name="form-name" value="newsletter" />
+            <input type="hidden" name="source" value="footer" />
+            {/* Honeypot — hidden from real users */}
+            <p className="hidden">
+              <label>
+                Don&apos;t fill this out:{' '}
+                <input
+                  name="bot-field"
+                  value={botField}
+                  onChange={(e) => setBotField(e.target.value)}
+                />
+              </label>
+            </p>
             <input
               type="email"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={status === 'submitting' || status === 'success'}
               placeholder="Enter your email"
-              className="flex-grow px-4 py-3 bg-forest border border-moss/30 rounded-full text-cream placeholder-gray-moss/60 focus:border-amber focus:outline-none transition-colors"
+              className="flex-grow px-4 py-3 bg-forest border border-moss/30 rounded-full text-cream placeholder-gray-moss/60 focus:border-amber focus:outline-none transition-colors disabled:opacity-60"
             />
             <button
               type="submit"
-              className="btn-primary px-6 py-3 rounded-full font-medium whitespace-nowrap"
+              disabled={status === 'submitting' || status === 'success'}
+              className="btn-primary px-6 py-3 rounded-full font-medium whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Subscribe
+              {status === 'submitting'
+                ? 'Subscribing…'
+                : status === 'success'
+                ? 'Subscribed ✓'
+                : 'Subscribe'}
             </button>
           </form>
+          {status === 'success' && (
+            <p className="text-amber text-sm mt-4">
+              Thanks for joining — we&apos;ll be in touch when there&apos;s news worth sharing.
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="text-red-300 text-sm mt-4">
+              Sorry — {errorMessage || 'something went wrong.'} Please try again.
+            </p>
+          )}
         </div>
 
         {/* Divider */}
@@ -94,7 +167,7 @@ export default function Footer() {
               Angel Oak Orchestra
             </h4>
             <p className="text-gray-moss text-sm leading-relaxed">
-              Folk & Americana from Charleston, South Carolina.
+              Folk & Americana from Oskarshamn, Sweden.
               Rooted in tradition. Reaching toward something new.
             </p>
           </div>

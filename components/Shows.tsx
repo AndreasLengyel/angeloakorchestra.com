@@ -1,50 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { MapPin, Calendar, ExternalLink } from 'lucide-react';
-
-const upcomingShows = [
-  {
-    date: 'Feb 14, 2025',
-    day: 'Friday',
-    venue: 'The Pour House',
-    city: 'Charleston, SC',
-    time: '8:00 PM',
-    ticketLink: '#',
-  },
-  {
-    date: 'Feb 22, 2025',
-    day: 'Saturday',
-    venue: 'Eddie\'s Attic',
-    city: 'Decatur, GA',
-    time: '9:00 PM',
-    ticketLink: '#',
-  },
-  {
-    date: 'Mar 7, 2025',
-    day: 'Friday',
-    venue: 'The Grey Eagle',
-    city: 'Asheville, NC',
-    time: '8:30 PM',
-    ticketLink: '#',
-  },
-  {
-    date: 'Mar 15, 2025',
-    day: 'Saturday',
-    venue: 'Cat\'s Cradle',
-    city: 'Carrboro, NC',
-    time: '9:00 PM',
-    ticketLink: '#',
-  },
-  {
-    date: 'Apr 5, 2025',
-    day: 'Saturday',
-    venue: 'Station Inn',
-    city: 'Nashville, TN',
-    time: '8:00 PM',
-    ticketLink: '#',
-  },
-];
 
 export default function Shows() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -76,68 +32,65 @@ export default function Shows() {
       ref={sectionRef}
       className="py-24 md:py-32 bg-forest-deep texture-overlay"
     >
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Section Header */}
-        <div className="text-center mb-16 fade-in">
-          <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">Live</p>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-cream mb-6">
-            Upcoming Shows
+        <div className="fade-in">
+          <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">
+            Our Story
+          </p>
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-cream mb-8">
+            How We Got Here
           </h2>
-          <p className="text-gray-moss max-w-2xl mx-auto">
-            Join us on the road. Nothing compares to experiencing our music live.
+          <div className="flex justify-center mb-12">
+            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-amber to-transparent" />
+          </div>
+        </div>
+
+        {/* Narrative */}
+        <div className="fade-in stagger-1 space-y-6 text-cream/85 leading-relaxed text-left md:text-lg">
+          <p>
+            The story of a band is usually the story of long hours in small rooms. Six
+            friends from Oskarshamn &mdash; a small coastal town on the Swedish Baltic
+            &mdash; finding common ground in songs from a continent away.
+          </p>
+          <p>
+            What pulled us in wasn&apos;t geography. It was the feeling: folk and
+            Americana have always understood that a melody can carry weight that words
+            alone can&apos;t. That a chord change can mean longing, or homecoming, or
+            something in between.
+          </p>
+          <p>
+            We started by playing each other&apos;s favourites and ended up writing our
+            own. Songs about love, doubt, the people we miss, the places we keep coming
+            back to. Songs that needed room to breathe &mdash; and a band that knew when
+            to give it.
           </p>
         </div>
 
-        {/* Shows List */}
-        <div className="space-y-4">
-          {upcomingShows.map((show, index) => (
-            <div
-              key={`${show.date}-${show.venue}`}
-              className={`fade-in stagger-${Math.min(index + 1, 4)} bg-forest/40 rounded-lg p-6 border border-moss/30 hover:border-amber/50 transition-colors`}
-            >
-              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-                {/* Date */}
-                <div className="md:w-32 flex-shrink-0">
-                  <div className="flex items-center gap-2 text-amber">
-                    <Calendar size={16} />
-                    <span className="font-[family-name:var(--font-playfair)] text-lg">{show.date}</span>
-                  </div>
-                  <p className="text-gray-moss text-sm mt-1">{show.day} &bull; {show.time}</p>
-                </div>
-
-                {/* Venue & City */}
-                <div className="flex-grow">
-                  <h3 className="font-[family-name:var(--font-playfair)] text-xl text-cream">
-                    {show.venue}
-                  </h3>
-                  <div className="flex items-center gap-1 text-gray-moss text-sm mt-1">
-                    <MapPin size={14} />
-                    <span>{show.city}</span>
-                  </div>
-                </div>
-
-                {/* Ticket Button */}
-                <div className="flex-shrink-0">
-                  <a
-                    href={show.ticketLink}
-                    className="inline-flex items-center gap-2 btn-primary px-6 py-2 rounded-full text-sm font-medium"
-                  >
-                    Tickets
-                    <ExternalLink size={14} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Pull quote */}
+        <div className="fade-in stagger-2 my-14">
+          <div className="flex justify-center mb-6">
+            <div className="w-12 h-[1px] bg-amber/60" />
+          </div>
+          <blockquote className="font-[family-name:var(--font-playfair)] italic text-cream/90 text-2xl md:text-3xl leading-snug">
+            &ldquo;Folk &amp; Americana from a place no one expects it &mdash;
+            and that&apos;s exactly the point.&rdquo;
+          </blockquote>
+          <div className="flex justify-center mt-6">
+            <div className="w-12 h-[1px] bg-amber/60" />
+          </div>
         </div>
 
-        {/* More Shows Message */}
-        <div className="mt-12 text-center fade-in">
-          <div className="inline-block bg-moss/30 rounded-full px-6 py-3">
-            <p className="text-cream/80 text-sm">
-              More dates coming soon. Sign up for our newsletter to be the first to know.
-            </p>
-          </div>
+        {/* Closing */}
+        <div className="fade-in stagger-3 space-y-6 text-cream/85 leading-relaxed text-left md:text-lg">
+          <p>
+            This site marks the beginning. Our debut single,{' '}
+            <em>I Think I Love You</em>, arrives June 6. A first record is taking shape.
+            And somewhere down the road, the live dates we&apos;ll list here in earnest.
+          </p>
+          <p className="text-amber italic text-center pt-4">
+            For now &mdash; thank you for listening.
+          </p>
         </div>
       </div>
     </section>

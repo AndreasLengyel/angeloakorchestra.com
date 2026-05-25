@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form definitions</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <!-- Hidden form so Netlify can detect & register it at deploy time.
+         Submissions still go through the live React form in Footer.tsx. -->
+    <form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+      <input type="text" name="bot-field" />
+      <input type="hidden" name="source" />
+      <input type="hidden" name="subscribed_at" />
+    </form>
+  </body>
+</html>

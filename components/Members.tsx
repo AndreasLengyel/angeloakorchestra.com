@@ -67,7 +67,7 @@ export default function Members() {
             The Musicians
           </h2>
           <p className="text-bark max-w-2xl mx-auto">
-            Six voices. Keys that range from intimate piano to the warm swell of Hammond organ.
+            Five voices. Keys that range from intimate piano to the warm swell of Hammond organ.
             Guitars acoustic and electric. A rhythm section that knows when to drive and when to breathe.
             This is a band built for texture and dynamics.
           </p>

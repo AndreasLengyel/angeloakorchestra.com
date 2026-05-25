@@ -1,51 +1,23 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { Play, ExternalLink } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Bell } from 'lucide-react';
 
-const albums = [
-  {
-    title: 'Beneath the Canopy',
-    year: '2024',
-    type: 'Full Album',
-    tracks: [
-      'Morning Mist',
-      'Lowcountry Lullaby',
-      'Roots Run Deep',
-      'The Witness Tree',
-      'Golden Hour',
-      'Spanish Moss',
-      'Coming Home',
-      'Ancient Arms',
-    ],
-  },
-  {
-    title: 'First Light',
-    year: '2023',
-    type: 'EP',
-    tracks: [
-      'Dawn Breaking',
-      'Marsh Song',
-      'Old Stories',
-      'Salt Air',
-    ],
-  },
-  {
-    title: 'Live at the Dock Street',
-    year: '2023',
-    type: 'Live Album',
-    tracks: [
-      'Intro / The Gathering',
-      'Lowcountry Lullaby (Live)',
-      'Improvisation in E',
-      'Coming Home (Live)',
-      'Encore: Morning Mist',
-    ],
-  },
-];
+const RELEASE_DATE = new Date('2026-06-06T00:00:00');
 
 export default function Music() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [daysLeft, setDaysLeft] = useState<number | null>(null);
+
+  useEffect(() => {
+    const update = () => {
+      const ms = RELEASE_DATE.getTime() - Date.now();
+      setDaysLeft(Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24))));
+    };
+    update();
+    const id = setInterval(update, 1000 * 60 * 60);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,103 +46,97 @@ export default function Music() {
       ref={sectionRef}
       className="py-24 md:py-32 bg-forest-deep texture-overlay"
     >
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 fade-in">
-          <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">Listen</p>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-cream mb-6">
-            Our Music
+          <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">
+            Debut Single &middot; June 6, 2026
+          </p>
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl text-cream mb-4 italic">
+            I Think I Love You
           </h2>
-          <p className="text-gray-moss max-w-2xl mx-auto">
-            Explore our recordings — from studio albums to live performances.
-            Each collection captures a different facet of our sound.
+          <p className="text-gray-moss max-w-xl mx-auto">
+            Our first release. A quiet admission, written with reverence.
           </p>
         </div>
 
-        {/* Albums Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {albums.map((album, index) => (
-            <div
-              key={album.title}
-              className={`fade-in stagger-${index + 1} album-card bg-forest/50 rounded-xl overflow-hidden border border-moss/30`}
-            >
-              {/* Album Cover Placeholder */}
-              <div className="aspect-square bg-gradient-to-br from-moss/40 to-forest relative group cursor-pointer">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-cream/40">
-                    <div className="w-20 h-20 mx-auto mb-3 rounded-lg border border-cream/20 flex items-center justify-center bg-forest-deep/50">
-                      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                      </svg>
-                    </div>
-                    <p className="text-xs uppercase tracking-wider">Album Art</p>
-                  </div>
-                </div>
-                {/* Play overlay */}
-                <div className="absolute inset-0 bg-forest-deep/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-amber flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform">
-                    <Play className="w-8 h-8 text-forest-deep ml-1" fill="currentColor" />
-                  </div>
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Artwork */}
+          <div className="fade-in stagger-1">
+            <div className="relative">
+              <div className="aspect-square rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-moss/40 via-forest to-forest-deep border border-moss/30 relative">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                  <p className="text-amber uppercase tracking-[0.25em] text-xs mb-6">Single</p>
+                  <h3 className="font-[family-name:var(--font-playfair)] text-cream text-3xl md:text-4xl italic leading-tight">
+                    I Think<br />I Love You
+                  </h3>
+                  <div className="w-12 h-px bg-amber/60 my-6" />
+                  <p className="text-cream/60 uppercase tracking-widest text-xs">
+                    Angel Oak Orchestra
+                  </p>
                 </div>
               </div>
 
-              {/* Album Info */}
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h3 className="font-[family-name:var(--font-playfair)] text-xl text-cream mb-1">
-                      {album.title}
-                    </h3>
-                    <p className="text-gray-moss text-sm">
-                      {album.year} &bull; {album.type}
-                    </p>
-                  </div>
+              {/* Countdown badge */}
+              {daysLeft !== null && daysLeft > 0 && (
+                <div className="absolute -top-5 -right-5 bg-amber text-forest-deep rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-xl">
+                  <p className="font-[family-name:var(--font-playfair)] text-3xl leading-none">
+                    {daysLeft}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-wider mt-1">
+                    {daysLeft === 1 ? 'day to go' : 'days to go'}
+                  </p>
                 </div>
+              )}
 
-                {/* Track List */}
-                <div className="mt-4 space-y-2">
-                  {album.tracks.slice(0, 4).map((track, i) => (
-                    <div key={track} className="flex items-center text-sm text-cream/60 hover:text-cream transition-colors cursor-pointer">
-                      <span className="w-5 text-moss">{i + 1}.</span>
-                      <span>{track}</span>
-                    </div>
-                  ))}
-                  {album.tracks.length > 4 && (
-                    <p className="text-sm text-amber/70 mt-2">
-                      +{album.tracks.length - 4} more tracks
-                    </p>
-                  )}
-                </div>
-
-                {/* Streaming Links */}
-                <div className="mt-6 pt-4 border-t border-moss/30 flex gap-3">
-                  <a
-                    href="#"
-                    className="text-xs uppercase tracking-wider text-gray-moss hover:text-amber transition-colors flex items-center gap-1"
-                  >
-                    Spotify <ExternalLink size={12} />
-                  </a>
-                  <a
-                    href="#"
-                    className="text-xs uppercase tracking-wider text-gray-moss hover:text-amber transition-colors flex items-center gap-1"
-                  >
-                    Apple Music <ExternalLink size={12} />
-                  </a>
-                </div>
-              </div>
+              {/* Decorative glows */}
+              <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-amber/20 rounded-full blur-3xl -z-10" />
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-moss/30 rounded-full blur-2xl -z-10" />
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* More Music CTA */}
-        <div className="mt-12 text-center fade-in">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 text-amber hover:text-gold transition-colors"
-          >
-            <span className="uppercase tracking-wider text-sm">View All Releases</span>
-            <ExternalLink size={16} />
-          </a>
+          {/* Story */}
+          <div className="fade-in stagger-2 space-y-5 text-cream/85 leading-relaxed">
+            <p>
+              <em>I Think I Love You</em> is the first piece of music we&apos;re sharing
+              with the world &mdash; a song about the moment a feeling becomes
+              undeniable.
+            </p>
+            <p>
+              It opens with a smile bright as summer in the dead of winter, a flower
+              blooming out of season, a full moon undimmed by clouds. Each verse
+              holds up a small impossibility, the kind only love can explain. The
+              hesitation in the title isn&apos;t doubt &mdash; it&apos;s reverence,
+              the careful weight of a thing too large to say all at once.
+            </p>
+            <p>
+              The bridge is where the song stops looking outward and turns inward:
+              <em> &ldquo;All the times I wondered why I took a fall &mdash; no wonder
+              at all.&rdquo;</em> Every detour, every disappointment, every long way
+              around finally makes sense.
+            </p>
+            <p>
+              We built the arrangement to mirror that journey. Strings rise like a
+              held breath. A lone guitar carries the verses the way a hand carries
+              something fragile. By the final chorus, the pad swells into something
+              whole and certain.
+            </p>
+            <p className="text-amber italic pt-2">
+              Out everywhere June 6, 2026.
+            </p>
+
+            <div className="pt-4 flex flex-wrap gap-4 items-center">
+              <a href="#contact" className="btn-primary inline-flex items-center gap-2">
+                <Bell size={16} /> Get a Release Reminder
+              </a>
+              <a
+                href="#about"
+                className="text-amber hover:text-gold transition-colors uppercase tracking-wider text-sm"
+              >
+                More about the band &rarr;
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
