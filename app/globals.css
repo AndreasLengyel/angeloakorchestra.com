@@ -275,3 +275,26 @@ select:focus {
   background: var(--amber);
   color: var(--forest-deep);
 }
+
+/* 404 page — the floating amber "0" */
+@keyframes notfound-zero-drift {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-4deg);
+  }
+}
+
+.notfound-zero {
+  display: inline-block;
+  transform-origin: center;
+  animation: notfound-zero-drift 5s ease-in-out infinite;
+  text-shadow: 0 0 28px rgba(212, 165, 116, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notfound-zero {
+    animation: none;
+  }
+}
