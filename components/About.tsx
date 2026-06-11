@@ -74,16 +74,16 @@ export default function About() {
           <div className="order-1 md:order-2 fade-in stagger-2">
             <div className="relative">
               {/* Main image */}
-              <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-2xl relative">
+              <div className="aspect-[3/2] rounded-lg overflow-hidden shadow-2xl relative">
                 <Image
-                  src="/images/band-placeholder.svg"
-                  alt="Angel Oak Orchestra performing under the ancient oak"
+                  src="/images/band-hero.jpg"
+                  alt="Angel Oak Orchestra — six silhouettes walking toward an ancient oak at sunset"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Subtle overlay for cohesion */}
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent"></div>
               </div>
 
               {/* Decorative elements */}
