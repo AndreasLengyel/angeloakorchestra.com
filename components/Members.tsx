@@ -12,7 +12,7 @@ type Member = {
 
 const members: Member[] = [
   { key: 'andreas-petersson', name: 'Andreas Petersson', role: 'Vocals, Lead Guitar' },
-  { key: 'fideli-jonsson',    name: 'Fideli Jonsson',    role: 'Vocals, Lead' },
+  { key: 'fideli-jonsson',    name: 'Fideli Jonson',     role: 'Vocals, Lead' },
   { key: 'magnus-petersson',  name: 'Magnus Petersson',  role: 'Vocals, Keys, Hammond, Piano, Acoustic Guitar' },
   { key: 'andreas-lengyel',   name: 'Andreas Lengyel',   role: 'Vocals, Lead, Keys, Acoustic Guitar' },
   { key: 'vlado-markovic',    name: 'Vlado Markovic',    role: 'Bass' },
