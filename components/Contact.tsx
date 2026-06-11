@@ -186,7 +186,7 @@ export default function Contact() {
                   </div>
                   <div className="flex items-center gap-3 text-cream/80 mt-2">
                     <Phone size={18} className="text-moss" />
-                    <span>+1 (619) 751-3333</span>
+                    <span>+46 76-761 55 10</span>
                   </div>
                 </div>
 
