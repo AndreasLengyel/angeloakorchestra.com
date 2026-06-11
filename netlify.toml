@@ -4,3 +4,10 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Smart link for the debut single — sends listeners to Spotify
+[[redirects]]
+  from = "/listen/i-think-i-love-you"
+  to = "https://open.spotify.com/track/2mNjpBUr0n6NYiKDbsJl5U?si=f8f07a725d1746c8"
+  status = 302
+  force = true
