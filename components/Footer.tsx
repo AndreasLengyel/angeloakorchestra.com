@@ -249,14 +249,21 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Angel Oak Orchestra. All rights reserved.
           </p>
 
-          {/* Back to top */}
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-gray-moss hover:text-amber transition-colors text-sm"
-          >
-            Back to top
-            <ArrowUp size={16} />
-          </button>
+          <div className="flex items-center gap-6">
+            <a
+              href="/privacy"
+              className="text-gray-moss hover:text-amber transition-colors text-sm"
+            >
+              Privacy
+            </a>
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-2 text-gray-moss hover:text-amber transition-colors text-sm"
+            >
+              Back to top
+              <ArrowUp size={16} />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

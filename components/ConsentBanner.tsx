@@ -65,14 +65,12 @@ export default function ConsentBanner() {
           <p>
             We use a single analytics cookie (Google Analytics) to understand
             how visitors find the music. Nothing is shared with advertisers.
-            See Google&apos;s{' '}
+            See our{' '}
             <a
-              href="https://policies.google.com/technologies/cookies"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/privacy"
               className="text-brass-bright hover:underline"
             >
-              cookie notice
+              privacy notice
             </a>
             .
           </p>
