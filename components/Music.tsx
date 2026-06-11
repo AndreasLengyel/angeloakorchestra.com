@@ -1,9 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { Bell } from 'lucide-react';
 
-const RELEASE_DATE = new Date('2026-06-06T00:00:00');
+const RELEASE_DATE = new Date('2026-06-12T00:00:00');
 
 export default function Music() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -50,7 +51,7 @@ export default function Music() {
         {/* Section Header */}
         <div className="text-center mb-16 fade-in">
           <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">
-            Debut Single &middot; June 6, 2026
+            Debut Single &middot; June 12, 2026
           </p>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl text-cream mb-4 italic">
             I Think I Love You
@@ -64,17 +65,15 @@ export default function Music() {
           {/* Artwork */}
           <div className="fade-in stagger-1">
             <div className="relative">
-              <div className="aspect-square rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-moss/40 via-forest to-forest-deep border border-moss/30 relative">
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                  <p className="text-amber uppercase tracking-[0.25em] text-xs mb-6">Single</p>
-                  <h3 className="font-[family-name:var(--font-playfair)] text-cream text-3xl md:text-4xl italic leading-tight">
-                    I Think<br />I Love You
-                  </h3>
-                  <div className="w-12 h-px bg-amber/60 my-6" />
-                  <p className="text-cream/60 uppercase tracking-widest text-xs">
-                    Angel Oak Orchestra
-                  </p>
-                </div>
+              <div className="aspect-square rounded-xl overflow-hidden shadow-2xl border border-moss/30 relative">
+                <Image
+                  src="/images/AOO_i-think-i-love-you_cover_1254.png"
+                  alt="I Think I Love You — Angel Oak Orchestra single artwork"
+                  width={1254}
+                  height={1254}
+                  priority
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Countdown badge */}
@@ -122,7 +121,7 @@ export default function Music() {
               whole and certain.
             </p>
             <p className="text-amber italic pt-2">
-              Out everywhere June 6, 2026.
+              Out everywhere June 12, 2026.
             </p>
 
             <div className="pt-4 flex flex-wrap gap-4 items-center">
@@ -137,6 +136,22 @@ export default function Music() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Spotify player */}
+        <div className="mt-16 max-w-3xl mx-auto fade-in stagger-3">
+          <iframe
+            data-testid="embed-iframe"
+            src="https://open.spotify.com/embed/track/2mNjpBUr0n6NYiKDbsJl5U?utm_source=generator"
+            width="100%"
+            height={352}
+            frameBorder={0}
+            allowFullScreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="I Think I Love You on Spotify"
+            style={{ borderRadius: 12 }}
+          />
         </div>
       </div>
     </section>
