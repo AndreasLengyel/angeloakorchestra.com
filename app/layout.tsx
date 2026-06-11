@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Angel Oak Orchestra" }],
   // Favicons resolved automatically from app/icon.png and app/apple-icon.png
+  verification: {
+    google: "YdAJ6DiQmgye477Rn0RGaXR7JzvOsd5S0BFANzSQwCE",
+  },
   openGraph: {
     title: "Angel Oak Orchestra | Cinematic Americana",
     description:
