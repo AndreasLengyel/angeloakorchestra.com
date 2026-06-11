@@ -6,10 +6,12 @@ import Members from '@/components/Members';
 import Shows from '@/components/Shows';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import StructuredData from '@/components/StructuredData';
 
 export default function Home() {
   return (
     <>
+      <StructuredData />
       <Navigation />
       <main>
         <Hero />
