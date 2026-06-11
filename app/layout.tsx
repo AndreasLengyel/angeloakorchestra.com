@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import Script from "next/script";
+import ConsentBanner from "@/components/ConsentBanner";
 import "./globals.css";
 
 const SITE_URL = "https://angeloakorchestra.com";
@@ -90,20 +91,43 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
-        {/* Google Analytics 4 — loads after the page is interactive
-            so it never blocks initial paint or hydration. */}
+        {/* Google Consent Mode v2 — must fire BEFORE gtag.js loads so
+            GA respects the denied defaults from the very first beacon.
+            beforeInteractive guarantees DOM-blocking order. */}
+        <Script id="ga4-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              functionality_storage: 'granted',
+              security_storage: 'granted',
+              wait_for_update: 500
+            });
+            try {
+              var stored = localStorage.getItem('aoo-consent-v1');
+              if (stored === 'granted') {
+                gtag('consent', 'update', { analytics_storage: 'granted' });
+              }
+            } catch (e) {}
+          `}
+        </Script>
+        {/* GA4 loader — fires after interactive so it never delays paint. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
         />
         <Script id="ga4-init" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_ID}');
           `}
         </Script>
+        <ConsentBanner />
         {children}
       </body>
     </html>
