@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type ComponentType, type SVGProps } from 'react';
-import { ArrowUp, Instagram, Youtube } from 'lucide-react';
+import { ArrowUp, Facebook, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
 
 // X (formerly Twitter) — lucide doesn't ship the rebranded glyph yet
@@ -9,6 +9,15 @@ function XIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+// Spotify — official mark (no lucide equivalent)
+function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12 0a12 12 0 100 24 12 12 0 000-24zm5.51 17.34a.75.75 0 01-1.03.25c-2.83-1.73-6.39-2.12-10.58-1.16a.75.75 0 01-.34-1.46c4.59-1.06 8.52-.61 11.7 1.34.36.22.47.69.25 1.03zm1.47-3.27a.94.94 0 01-1.29.31c-3.24-1.99-8.18-2.57-12.02-1.4a.94.94 0 11-.55-1.8c4.39-1.34 9.83-.69 13.55 1.6.44.27.58.85.31 1.29zm.13-3.41C15.21 8.4 8.61 8.18 4.99 9.28a1.13 1.13 0 11-.65-2.16c4.15-1.26 11.43-1.01 15.93 1.66a1.13 1.13 0 01-1.16 1.94z" />
     </svg>
   );
 }
@@ -38,7 +47,9 @@ type SocialLink = {
 };
 
 const socialLinks: SocialLink[] = [
-  { icon: Instagram,      label: 'Instagram',  href: 'https://www.instagram.com/theangeloakorchestra' },
+  { icon: Instagram,      label: 'Instagram',  href: 'https://www.instagram.com/theangeloakorchestra/' },
+  { icon: Facebook,       label: 'Facebook',   href: 'https://www.facebook.com/angeloakorchestra' },
+  { icon: SpotifyIcon,    label: 'Spotify',    href: 'https://open.spotify.com/artist/2cOQ17w2fRbsxAumPfa57d' },
   { icon: Youtube,        label: 'YouTube',    href: 'https://www.youtube.com/@AngelOakOrchestra' },
   { icon: SoundCloudIcon, label: 'SoundCloud', href: 'https://soundcloud.com/angel-oak-orchestra' },
   { icon: XIcon,          label: 'X',          href: 'https://x.com/oak_angel16177' },

@@ -186,21 +186,32 @@ export default function Contact() {
                   </div>
                   <div className="flex items-center gap-3 text-cream/80 mt-2">
                     <Phone size={18} className="text-moss" />
-                    <span>+46 76-761 55 10</span>
+                    <a href="tel:+46767615510" className="hover:text-amber transition-colors">
+                      +46 76-761 55 10
+                    </a>
                   </div>
                 </div>
 
                 {/* Social */}
                 <div>
                   <h4 className="text-amber uppercase tracking-wider text-sm mb-3">Follow Us</h4>
-                  <div className="flex gap-4">
-                    {['Instagram', 'Facebook', 'YouTube', 'Spotify'].map((platform) => (
+                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                    {[
+                      { label: 'Instagram',  href: 'https://www.instagram.com/theangeloakorchestra/' },
+                      { label: 'Facebook',   href: 'https://www.facebook.com/angeloakorchestra' },
+                      { label: 'Spotify',    href: 'https://open.spotify.com/artist/2cOQ17w2fRbsxAumPfa57d' },
+                      { label: 'YouTube',    href: 'https://www.youtube.com/@AngelOakOrchestra' },
+                      { label: 'SoundCloud', href: 'https://soundcloud.com/angel-oak-orchestra' },
+                      { label: 'X',          href: 'https://x.com/oak_angel16177' },
+                    ].map((platform) => (
                       <a
-                        key={platform}
-                        href="#"
+                        key={platform.label}
+                        href={platform.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-gray-moss hover:text-amber transition-colors text-sm"
                       >
-                        {platform}
+                        {platform.label}
                       </a>
                     ))}
                   </div>
