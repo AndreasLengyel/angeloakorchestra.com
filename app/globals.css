@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
+/* ============================================================
+   AOO brand palette — sourced from the AOO Design Sheet.
+   The mood is "ink + brass": dark almost-black core, antique
+   gold accents, sage/olive as a quiet secondary. Cream sections
+   read like aged parchment rather than fresh paper.
+   ============================================================ */
 :root {
-  --forest-deep: #1a2e1a;
-  --forest: #2d4a2d;
-  --moss: #4a6741;
-  --amber: #d4a574;
-  --gold: #c9a227;
-  --cream: #f5f0e8;
-  --bark: #5c4033;
-  --gray-moss: #8a9a8a;
+  /* Core (dark) */
+  --ink:           #0e120f;   /* darkest — near-black with a green undertone */
+  --forest-deep:   #0e120f;   /* legacy alias kept for existing classes — same as ink */
+  --forest:        #1a221c;   /* slightly lifted surface for cards/sections */
+  --moss:          #4f5d44;   /* sage olive — secondary, used sparingly */
+
+  /* Brass / gold accents */
+  --brass:         #b58a4a;   /* primary accent — antique gold */
+  --brass-bright:  #d4b07a;   /* hover/highlight */
+  --gold:          #c9a256;   /* legacy alias kept for existing classes */
+  --amber:         #c8a06b;   /* legacy alias kept for existing classes */
+
+  /* Light */
+  --parchment:     #ecdec3;   /* aged paper — main cream surface */
+  --cream:         #f1e6cf;   /* legacy alias, slightly warmer than parchment */
+  --bark:          #4a3528;   /* deep brown for body type on parchment */
+  --gray-moss:     #7e8a78;   /* muted sage gray — captions on dark */
 }
 
 @theme inline {
-  --color-forest-deep: var(--forest-deep);
+  --color-ink: var(--ink);
+  --color-forest-deep: var(--ink);
   --color-forest: var(--forest);
   --color-moss: var(--moss);
-  --color-amber: var(--amber);
-  --color-gold: var(--gold);
+  --color-brass: var(--brass);
+  --color-brass-bright: var(--brass-bright);
+  --color-amber: var(--brass);
+  --color-gold: var(--brass-bright);
+  --color-parchment: var(--parchment);
   --color-cream: var(--cream);
   --color-bark: var(--bark);
   --color-gray-moss: var(--gray-moss);
-  --font-serif: var(--font-playfair);
+  --font-serif: var(--font-display);
+  --font-display: var(--font-display);
   --font-sans: var(--font-inter);
 }
 
@@ -29,8 +49,8 @@
 }
 
 body {
-  background: var(--cream);
-  color: var(--forest-deep);
+  background: var(--parchment);
+  color: var(--bark);
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
@@ -40,16 +60,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--cream);
+  background: var(--parchment);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--moss);
+  background: var(--brass);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--forest);
+  background: var(--brass-bright);
 }
 
 /* Scroll-triggered animations */
@@ -70,34 +90,37 @@ body {
 .stagger-3 { transition-delay: 0.3s; }
 .stagger-4 { transition-delay: 0.4s; }
 
-/* Hero gradient background */
+/* Hero gradient — ink base, brass glow top-right */
 .hero-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--forest-deep) 0%,
-    var(--forest) 40%,
-    #3d5a3d 60%,
-    rgba(212, 165, 116, 0.3) 100%
-  );
+  background:
+    radial-gradient(
+      ellipse at 75% 15%,
+      rgba(181, 138, 74, 0.22) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      155deg,
+      var(--ink) 0%,
+      #161d18 55%,
+      #1f261c 85%,
+      rgba(181, 138, 74, 0.18) 100%
+    );
   position: relative;
 }
 
 .hero-gradient::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: radial-gradient(
-    ellipse at 70% 20%,
-    rgba(201, 162, 39, 0.15) 0%,
+    ellipse at 30% 80%,
+    rgba(79, 93, 68, 0.18) 0%,
     transparent 50%
   );
   pointer-events: none;
 }
 
-/* Subtle texture overlay */
+/* Subtle film-grain texture — adds analog warmth on dark surfaces */
 .texture-overlay {
   position: relative;
 }
@@ -105,36 +128,30 @@ body {
 .texture-overlay::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.03;
+  opacity: 0.04;
   pointer-events: none;
+  mix-blend-mode: overlay;
 }
 
 /* Animated scroll indicator */
 @keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
 }
 
 .scroll-indicator {
   animation: bounce 2s infinite ease-in-out;
 }
 
-/* Section divider */
+/* Brass section divider */
 .section-divider {
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--moss) 50%,
+    var(--brass) 50%,
     transparent 100%
   );
   max-width: 200px;
@@ -148,7 +165,7 @@ body {
 
 .album-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(26, 46, 26, 0.15);
+  box-shadow: 0 12px 40px rgba(14, 18, 15, 0.4);
 }
 
 /* Member card bio reveal */
@@ -166,12 +183,9 @@ body {
 
 /* ============================================================
    Comic-book member portraits
-   - Halftone dot overlay (Ben-Day pattern)
-   - Bold panel border
-   - Gentle hover punch
    ============================================================ */
 .portrait-frame {
-  background: var(--forest-deep);
+  background: var(--ink);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
@@ -180,7 +194,6 @@ body {
   filter: contrast(1.05) saturate(1.05);
 }
 
-/* Halftone dot pattern using radial-gradient */
 .portrait-halftone {
   position: absolute;
   inset: 0;
@@ -188,8 +201,8 @@ body {
   background-image:
     radial-gradient(
       circle at center,
-      rgba(26, 46, 26, 0.32) 0,
-      rgba(26, 46, 26, 0.32) 1px,
+      rgba(14, 18, 15, 0.34) 0,
+      rgba(14, 18, 15, 0.34) 1px,
       transparent 1.5px,
       transparent 100%
     );
@@ -213,12 +226,10 @@ body {
   background-size: 6px 6px;
 }
 
-/* Stagger the rotation on hover so each card feels alive individually */
 .member-card:nth-child(even):hover .portrait-frame {
   transform: translateY(-6px) rotate(0.4deg);
 }
 
-/* Subtle ambient float so the grid doesn't feel static */
 @keyframes portrait-breathe {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-3px); }
@@ -233,7 +244,6 @@ body {
 .member-card:nth-child(5) .portrait-frame { animation-delay: -2.2s; }
 .member-card:nth-child(6) .portrait-frame { animation-delay: -5.8s; }
 
-/* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .portrait-frame,
   .portrait-img,
@@ -248,49 +258,61 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--amber);
-  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+  border-color: var(--brass);
+  box-shadow: 0 0 0 3px rgba(181, 138, 74, 0.22);
 }
 
-/* Button hover effects */
+/* Brass buttons */
 .btn-primary {
-  background: var(--amber);
-  color: var(--forest-deep);
+  background: var(--brass);
+  color: var(--ink);
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background: var(--gold);
+  background: var(--brass-bright);
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(181, 138, 74, 0.25);
 }
 
 .btn-secondary {
   background: transparent;
-  border: 1px solid var(--amber);
-  color: var(--cream);
+  border: 1px solid var(--brass);
+  color: var(--parchment);
   transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background: var(--amber);
-  color: var(--forest-deep);
+  background: var(--brass);
+  color: var(--ink);
 }
 
-/* 404 page — the floating amber "0" */
+/* Brand wordmark — Cormorant set in small caps with letterspacing,
+   matching the AOO Design Sheet's wordmark feel. */
+.brand-wordmark {
+  font-family: var(--font-display), serif;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-feature-settings: "smcp", "c2sc";
+}
+
+/* Soft brass glow used around the monogram on dark surfaces */
+.monogram-glow {
+  filter: drop-shadow(0 0 18px rgba(181, 138, 74, 0.35));
+}
+
+/* 404 page — the floating brass "0" */
 @keyframes notfound-zero-drift {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(-4deg);
-  }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-10px) rotate(-4deg); }
 }
 
 .notfound-zero {
   display: inline-block;
   transform-origin: center;
   animation: notfound-zero-drift 5s ease-in-out infinite;
-  text-shadow: 0 0 28px rgba(212, 165, 116, 0.45);
+  text-shadow: 0 0 28px rgba(181, 138, 74, 0.5);
 }
 
 @media (prefers-reduced-motion: reduce) {

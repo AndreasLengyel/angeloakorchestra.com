@@ -53,7 +53,7 @@ export default function Music() {
           <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">
             Debut Single &middot; June 12, 2026
           </p>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl text-cream mb-4 italic">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl md:text-6xl text-cream mb-4 italic">
             I Think I Love You
           </h2>
           <p className="text-gray-moss max-w-xl mx-auto">
@@ -79,7 +79,7 @@ export default function Music() {
               {/* Countdown badge */}
               {daysLeft !== null && daysLeft > 0 && (
                 <div className="absolute -top-5 -right-5 bg-amber text-forest-deep rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-xl">
-                  <p className="font-[family-name:var(--font-playfair)] text-3xl leading-none">
+                  <p className="font-[family-name:var(--font-display)] text-3xl leading-none">
                     {daysLeft}
                   </p>
                   <p className="text-[10px] uppercase tracking-wider mt-1">

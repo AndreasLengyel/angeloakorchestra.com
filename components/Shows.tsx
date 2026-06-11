@@ -66,7 +66,7 @@ export default function Shows() {
           <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">
             On Stage
           </p>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-cream mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl text-cream mb-6">
             Live Dates
           </h2>
           <div className="flex justify-center mb-14">
@@ -100,7 +100,7 @@ export default function Shows() {
                     <div className="grid grid-cols-[auto_1fr] md:grid-cols-[7rem_1fr_auto] gap-x-6 gap-y-3 items-center">
                       {/* Date block */}
                       <div className="text-center md:text-left">
-                        <p className="text-amber font-[family-name:var(--font-playfair)] text-3xl md:text-4xl leading-none">
+                        <p className="text-amber font-[family-name:var(--font-display)] text-3xl md:text-4xl leading-none">
                           {day}
                         </p>
                         <p className="text-cream/70 uppercase tracking-widest text-xs mt-1">
@@ -110,7 +110,7 @@ export default function Shows() {
 
                       {/* Details */}
                       <div className="min-w-0">
-                        <h3 className="font-[family-name:var(--font-playfair)] text-cream text-xl md:text-2xl italic mb-2">
+                        <h3 className="font-[family-name:var(--font-display)] text-cream text-xl md:text-2xl italic mb-2">
                           {show.title}
                         </h3>
                         <div className="space-y-1.5 text-cream/80 text-sm">

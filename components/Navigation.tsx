@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -38,19 +39,30 @@ export default function Navigation() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-forest-deep/95 backdrop-blur-sm shadow-lg'
+          ? 'bg-ink/95 backdrop-blur-sm shadow-lg'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Logo lockup — glow monogram + wordmark */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="font-[family-name:var(--font-playfair)] text-xl md:text-2xl text-cream tracking-wide hover:text-amber transition-colors"
+            className="group flex items-center gap-3 text-cream hover:text-brass-bright transition-colors"
+            aria-label="Angel Oak Orchestra — home"
           >
-            Angel Oak Orchestra
+            <Image
+              src="/images/AOO_Spotify_ProfileAvatar_Monogram_Glow_500.png"
+              alt=""
+              width={500}
+              height={500}
+              priority
+              className="w-9 h-9 md:w-10 md:h-10 object-contain"
+            />
+            <span className="brand-wordmark text-sm md:text-base hidden sm:inline">
+              Angel Oak Orchestra
+            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -60,7 +72,7 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-cream/80 hover:text-amber text-sm uppercase tracking-wider transition-colors"
+                className="text-cream/80 hover:text-brass-bright text-sm uppercase tracking-wider transition-colors"
               >
                 {link.label}
               </a>
@@ -69,7 +81,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-cream p-2 hover:text-amber transition-colors"
+            className="md:hidden text-cream p-2 hover:text-brass-bright transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -84,13 +96,13 @@ export default function Navigation() {
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-forest-deep/95 backdrop-blur-sm px-4 py-4 space-y-4">
+        <div className="bg-ink/95 backdrop-blur-sm px-4 py-4 space-y-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="block text-cream/80 hover:text-amber text-sm uppercase tracking-wider transition-colors py-2"
+              className="block text-cream/80 hover:text-brass-bright text-sm uppercase tracking-wider transition-colors py-2"
             >
               {link.label}
             </a>

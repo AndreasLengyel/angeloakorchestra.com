@@ -53,7 +53,7 @@ export default function Members() {
         {/* Section Header */}
         <div className="text-center mb-16 fade-in">
           <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">The Band</p>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-forest-deep mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl text-forest-deep mb-6">
             The Musicians
           </h2>
           <p className="text-bark max-w-2xl mx-auto">
@@ -103,7 +103,7 @@ export default function Members() {
 
               {/* Member Info */}
               <div className="text-center">
-                <h3 className="font-[family-name:var(--font-playfair)] text-xl text-forest-deep mb-1">
+                <h3 className="font-[family-name:var(--font-display)] text-xl text-forest-deep mb-1">
                   {member.name}
                 </h3>
                 <p className="text-moss text-sm uppercase tracking-wider">

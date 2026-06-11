@@ -4,15 +4,6 @@ import { useState, type ComponentType, type SVGProps } from 'react';
 import { ArrowUp, Facebook, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
 
-// X (formerly Twitter) — lucide doesn't ship the rebranded glyph yet
-function XIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
 // Spotify — official mark (no lucide equivalent)
 function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -52,7 +43,6 @@ const socialLinks: SocialLink[] = [
   { icon: SpotifyIcon,    label: 'Spotify',    href: 'https://open.spotify.com/artist/2cOQ17w2fRbsxAumPfa57d' },
   { icon: Youtube,        label: 'YouTube',    href: 'https://www.youtube.com/@AngelOakOrchestra' },
   { icon: SoundCloudIcon, label: 'SoundCloud', href: 'https://soundcloud.com/angel-oak-orchestra' },
-  { icon: XIcon,          label: 'X',          href: 'https://x.com/oak_angel16177' },
 ];
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
@@ -129,7 +119,7 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Newsletter Section */}
         <div className="text-center mb-16">
-          <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-cream mb-4">
+          <h3 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl text-cream mb-4">
             Stay Connected
           </h3>
           <p className="text-gray-moss mb-6 max-w-md mx-auto">
@@ -198,12 +188,21 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {/* Brand */}
           <div>
-            <h4 className="font-[family-name:var(--font-playfair)] text-xl text-cream mb-4">
-              Angel Oak Orchestra
-            </h4>
+            <div className="flex items-center gap-3 mb-4">
+              <Image
+                src="/images/AOO_Spotify_ProfileAvatar_Monogram_Glow_500.png"
+                alt=""
+                width={500}
+                height={500}
+                className="w-12 h-12 object-contain monogram-glow"
+              />
+              <h4 className="brand-wordmark text-cream text-base leading-tight">
+                Angel Oak<br />Orchestra
+              </h4>
+            </div>
             <p className="text-gray-moss text-sm leading-relaxed">
-              Folk & Americana from Oskarshamn, Sweden.
-              Rooted in tradition. Reaching toward something new.
+              Cinematic Americana from Oskarshamn, Sweden.
+              <span className="block mt-2 italic text-brass/80">Poetic · Authentic · Timeless.</span>
             </p>
           </div>
 

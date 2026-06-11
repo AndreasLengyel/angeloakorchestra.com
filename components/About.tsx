@@ -39,7 +39,7 @@ export default function About() {
           <div className="order-2 md:order-1">
             <div className="fade-in stagger-1">
               <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">Our Story</p>
-              <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-forest-deep mb-6">
+              <h2 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl text-forest-deep mb-6">
                 Named for Something<br />
                 <span className="text-moss italic">Ancient & Alive</span>
               </h2>

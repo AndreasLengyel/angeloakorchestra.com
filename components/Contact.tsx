@@ -57,7 +57,7 @@ export default function Contact() {
         {/* Section Header */}
         <div className="text-center mb-16 fade-in">
           <p className="text-amber uppercase tracking-[0.2em] text-sm mb-4">Get in Touch</p>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-forest-deep mb-6">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl text-forest-deep mb-6">
             Contact Us
           </h2>
           <p className="text-bark max-w-2xl mx-auto">
@@ -148,7 +148,7 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="fade-in stagger-2">
             <div className="bg-forest-deep rounded-xl p-8 md:p-10 h-full">
-              <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-cream mb-6">
+              <h3 className="font-[family-name:var(--font-display)] text-2xl text-cream mb-6">
                 Direct Contact
               </h3>
 
@@ -202,7 +202,6 @@ export default function Contact() {
                       { label: 'Spotify',    href: 'https://open.spotify.com/artist/2cOQ17w2fRbsxAumPfa57d' },
                       { label: 'YouTube',    href: 'https://www.youtube.com/@AngelOakOrchestra' },
                       { label: 'SoundCloud', href: 'https://soundcloud.com/angel-oak-orchestra' },
-                      { label: 'X',          href: 'https://x.com/oak_angel16177' },
                     ].map((platform) => (
                       <a
                         key={platform.label}

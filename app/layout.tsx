@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+// Cormorant Garamond — brand display face (per AOO Design Sheet)
+const cormorant = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -15,14 +18,39 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Angel Oak Orchestra | Folk & Americana",
-  description: "Angel Oak Orchestra is a folk and Americana band named after the ancient Angel Oak tree on Johns Island, South Carolina. Rooted in tradition. Reaching toward something new.",
-  keywords: ["folk music", "Americana", "band", "Angel Oak", "live music", "South Carolina"],
+  title: "Angel Oak Orchestra | Cinematic Americana",
+  description:
+    "Angel Oak Orchestra — Cinematic Americana from Sweden. Poetic. Authentic. Timeless. Debut single 'I Think I Love You' out June 12, 2026.",
+  keywords: [
+    "Angel Oak Orchestra",
+    "Cinematic Americana",
+    "folk music",
+    "Americana",
+    "Nashville country",
+    "Oskarshamn",
+    "Sweden",
+  ],
   authors: [{ name: "Angel Oak Orchestra" }],
+  // Favicons resolved automatically from app/icon.png and app/apple-icon.png
   openGraph: {
-    title: "Angel Oak Orchestra | Folk & Americana",
-    description: "Rooted in tradition. Reaching toward something new.",
+    title: "Angel Oak Orchestra | Cinematic Americana",
+    description:
+      "Cinematic Americana — Poetic, Authentic, Timeless. Debut single out June 12, 2026.",
     type: "website",
+    images: [
+      {
+        url: "/images/AOO_Spotify_Header_Band_2660x1140.png",
+        width: 2660,
+        height: 1140,
+        alt: "Angel Oak Orchestra",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Angel Oak Orchestra | Cinematic Americana",
+    description: "Debut single 'I Think I Love You' out June 12, 2026.",
+    images: ["/images/AOO_Spotify_Header_Band_2660x1140.png"],
   },
 };
 
@@ -33,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${playfair.variable} ${inter.variable} antialiased`}>
+      <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

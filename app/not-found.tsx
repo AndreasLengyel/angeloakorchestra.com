@@ -29,7 +29,7 @@ export default function NotFound() {
       {/* Top wordmark — discreet, doubles as a way home */}
       <Link
         href="/"
-        className="absolute top-8 left-1/2 -translate-x-1/2 z-20 font-[family-name:var(--font-playfair)] text-cream/70 hover:text-amber transition-colors text-xs uppercase tracking-[0.35em]"
+        className="absolute top-8 left-1/2 -translate-x-1/2 z-20 font-[family-name:var(--font-display)] text-cream/70 hover:text-amber transition-colors text-xs uppercase tracking-[0.35em]"
       >
         Angel Oak Orchestra
       </Link>
@@ -48,7 +48,7 @@ export default function NotFound() {
 
         {/* Big 404 — the 0 floats as a knothole in the woods */}
         <h1
-          className="font-[family-name:var(--font-playfair)] text-[7rem] sm:text-[11rem] md:text-[15rem] text-cream leading-[0.85] mb-2 drop-shadow-lg select-none"
+          className="font-[family-name:var(--font-display)] text-[7rem] sm:text-[11rem] md:text-[15rem] text-cream leading-[0.85] mb-2 drop-shadow-lg select-none"
           aria-label="404 — Page not found"
         >
           <span>4</span>
@@ -57,7 +57,7 @@ export default function NotFound() {
         </h1>
 
         {/* Poetic line */}
-        <p className="font-[family-name:var(--font-playfair)] italic text-cream/90 text-xl sm:text-2xl md:text-3xl mt-6 mb-4 drop-shadow">
+        <p className="font-[family-name:var(--font-display)] italic text-cream/90 text-xl sm:text-2xl md:text-3xl mt-6 mb-4 drop-shadow">
           This page wandered off the path.
         </p>
         <p className="text-gray-moss text-base sm:text-lg max-w-md mx-auto">

@@ -42,16 +42,16 @@ export default function Hero() {
         </div>
 
         {/* Band name */}
-        <h1 className="font-[family-name:var(--font-playfair)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-cream mb-6 tracking-tight drop-shadow-lg">
+        <h1 className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-cream mb-6 tracking-tight drop-shadow-lg">
           Angel Oak
           <span className="block text-amber mt-2 drop-shadow-lg">Orchestra</span>
         </h1>
 
         {/* Tagline */}
-        <p className="font-[family-name:var(--font-playfair)] text-xl sm:text-2xl md:text-3xl text-cream/90 italic mb-4 drop-shadow-md">
+        <p className="font-[family-name:var(--font-display)] text-xl sm:text-2xl md:text-3xl text-cream/90 italic mb-4 drop-shadow-md">
           Rooted in tradition.
         </p>
-        <p className="font-[family-name:var(--font-playfair)] text-xl sm:text-2xl md:text-3xl text-cream/90 italic mb-12 drop-shadow-md">
+        <p className="font-[family-name:var(--font-display)] text-xl sm:text-2xl md:text-3xl text-cream/90 italic mb-12 drop-shadow-md">
           Reaching toward something new.
         </p>
 
